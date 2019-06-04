@@ -1,0 +1,155 @@
+body {
+    padding: 1em 1em 10em 1em;
+}
+
+.full-wrap {
+    word-wrap : break-word;
+}
+
+.problem {
+    margin-bottom : 5em;
+}
+
+.ptitle {
+    font-size: 1.5em;
+    font-weight : bold;
+}
+
+[target]:after {
+    font-family : FontAwesome;
+    display : inline-block;
+    text-decoration : inherit;
+    font-weight : normal;
+    font-style : normal;
+    content : '\00a0\00a0\f064';
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 1em;
+    background-color: rgb(230,230,230);
+    color: gray;
+    width: 100%;
+}
+
+ol ol {
+    list-style-type : lower-alpha;
+}
+
+.highlighted {
+    background-color:rgba(250, 230, 230, .8);
+    font-weight: bold;
+    color:black;
+}
+
+.output {
+    margin-top: 1em;
+    color: green;
+    font-weight: bold;
+    padding-left: 1em;
+}
+
+ul.examples {
+    list-style: none;
+}
+
+.shadowed {
+    border : 1px solid gray;
+    box-shadow : 3px 3px 3px gray;
+    padding: 1em;
+}
+
+.centered {
+    display : block;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+.code th {
+    text-align : center;
+    padding: .25em 2em;
+}
+
+.btn-list > li {
+    margin-bottom : .5em;
+}
+
+.code {
+    background-color : rgb(240,240,240);
+}
+
+table.code {
+    border-collapse : collapse;
+    border : 1px solid #ccc;
+    margin :auto;
+    font-size: .75em;
+    font-family : "Lucida Console", Monaco, monospace;
+}
+
+table td {
+    padding : 1em;
+    border : 1px solid #ccc;
+}
+
+.uml {
+    margin: 1.5em 0;
+}
+
+ul.btn-list > li  {
+    margin-bottom : .5em;
+}
+
+section > div.signature {
+    margin: 1em 0;
+    font-weight : bold;
+}
+
+section > div.examples li {
+    margin-top : .5em;
+}
+
+div.examples code {
+    background-color : white !important;
+    color : black;
+}
+
+section > section {
+    margin-left : 1.5em;
+    margin-right : 1.5em;
+}
+
+section + section {
+    margin-top : 3em;
+}
+
+img.logo {
+    width : 90px;
+}
+
+section > h2 {
+    background-color : rgb(110, 65, 5 );
+    color: white;
+    padding : .5em;
+    border-radius: .25em;
+}
+
+section > h3 {
+    background-color : rgb(230, 200, 150);
+    padding : .25em;
+}
+
+section > h4 {
+    background-color : rgb(255, 240, 215);
+    padding: .5em;
+    font-size:1.5rem;
+}
+
+section.component {
+    margin-top : 2em;
+    border : 1px solid gray;
+    background-color : rgb(245,245,245);
+    padding: 1em; border-radius : 1em;
+}
+

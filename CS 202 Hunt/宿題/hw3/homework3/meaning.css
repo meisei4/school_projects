@@ -1,0 +1,274 @@
+body {
+    font-family: serif;
+    margin:0px;
+}
+
+header {
+    margin-top: 20px;
+    position: relative;
+    padding: 15px 15px;
+    margin-right: 70px;
+    margin-left: 70px;
+    height: 60px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    background-color: #EDA543;
+}
+
+header > a:hover {
+    background-color: black;
+}
+
+header > a {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    top: 10px;
+    content: url("images/spa.png");
+    float: left;
+    background-color: #775825;
+    border-radius: 50%;
+}
+
+nav {
+    position: relative;
+    top: 70px;
+    right: 40px;
+}
+
+nav > ul > li:not(:first-child)::before {
+    content: "|";
+    padding-right: 3px;
+}
+
+nav > ul > li {
+    text-align: left;
+    font-size: 0.8em;
+    display: inline;
+    list-style: none;
+}
+
+section {
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+section:first-of-type > h1 {
+    border-bottom: 1px solid #DCDCDD;
+}
+
+section:first-of-type {
+    position: relative;
+    bottom: -30px;
+}
+
+section:first-of-type p::first-letter {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+em {
+    text-decoration-line: underline;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    background-color: #F7EAD9;
+    border-top: 1px solid #DCDCDD;
+    padding: 15px 15px;
+}
+
+section > h2 {
+    border-bottom: 1px solid #DCDCDD;
+}
+
+div.tab-content {
+    display: none;
+}
+
+div.tab-content > p::first-letter {
+    color: #B43100;
+    text-shadow: 2px 2px 8px black;
+    margin: 0px;
+    float: left;
+    font-size: 5em;
+}
+
+div.tab-content > p {
+    margin-left: 15px;
+    font-family: serif;
+}
+
+div.tab-content > img {
+    float: right;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-left: 10px;
+    margin: 10px 10px;
+}
+
+div.tab-content.active {
+    margin-left: 40px;
+    margin-right: 40px;
+    display: block;
+    float: right;
+    background-color: #F2C581;
+    border-style: solid;
+    border-width: 1px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding-bottom: 10px;
+    padding-right: 22px;
+    padding-top: 10px;
+}
+
+div.tabs > ul {
+    margin: 0px;
+}
+
+li.tab.active {
+    background-color: #F2C581;
+    border-bottom-color: #F2C581; 
+    border-style: solid;
+    border-width: 1px;
+    
+}
+
+li.tab.active a {
+    color: black;
+}
+
+li.tab a {
+    color: #5D5956;
+    text-decoration: none;
+    font-family: serif;
+    font-size: 0.8em;
+}
+
+li.tab.active:hover {
+    background-color: #F2C581;
+}
+
+li.tab.active:hover a{
+    color:black;
+}
+
+li.tab:hover a {
+    color: white;
+}
+
+li.tab:hover {
+    background-color: #7A551F;
+}
+
+li.tab {
+    position: relative;
+    bottom: -2px;
+    float: left;
+    margin-right: 4px;
+    list-style-type: none;
+    background-color: #F6D494;
+    border-bottom-color: #F6D494; 
+    padding: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+div.business-card {
+    border: 1px solid grey;
+    position: relative;
+    background-color: white;
+    margin: 20px;
+}
+
+header.bussiness-card-header {
+    border-bottom: 1px solid grey;
+    padding-top: 13px;
+    height: 40px; 
+    margin: 0px;
+    padding-t
+    width: 100%;
+    position: relative;
+    border-radius: 0px;
+    background-color: #7A551F;
+    text-align: center;
+    font-size: 0.7em;
+    color: white;
+    font-weight: bold;
+}
+
+div.business-card-body p {
+
+    margin-top: 30px;
+    margin-bottom:20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+div.business-card-body p::first-letter {
+    color: #B43100;
+    text-shadow: 2px 2px 8px black;
+    margin: 0px;
+    float: left;
+    font-size: 5em;  
+}
+
+button.business-card-button {
+    background-color: #7A551F;
+    height: 50px;
+    width: 100%;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+div.contact ul {
+    margin-right: 20px;
+    float: right;
+    margin-top: 25px;
+}
+
+span.phone::before {
+    content: "ph: ";
+}
+
+span.email::before {
+    content: "em: ";
+}
+
+div.contact ul li { 
+    font-size: 11pt;
+    margin-bottom: 20px;
+    float: left;
+    padding-right: 4px;
+    list-style: none;
+    background-color: #FEC67B;
+    padding: 8px;
+    border: 1px solid grey;
+    margin-right: 5px;
+}
+
+span.span::after {
+    content: "SPA";
+    font-weight:bold;
+}
+
+span.spa::after {
+    content: "SPA";
+    font-weight:bold;
+}
+
+img.avatar.shadowed {
+    margin: 10px;
+    float: left;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    box-shadow: 3px 3px 4px;
+}

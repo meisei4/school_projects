@@ -1,0 +1,7 @@
+Edward Neville
+17.75 / 20 points
+design of the database (13 points)
+-.75: dates should all be composite
+-1.5: all entity types are missing a primary key, and some entity types have no attributes, in which case, they should be reconsidered in another role (e.g., attribute)
+formatting of the ER diagram (3 points)
+professionalism (4 points)

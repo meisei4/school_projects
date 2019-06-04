@@ -1,0 +1,6 @@
+sleep 1 ; sleep 6 &
+date > datefile.txt
+cat < datefile.txt
+jobs
+ls
+sleep 7 & fg

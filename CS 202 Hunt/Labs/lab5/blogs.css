@@ -1,0 +1,137 @@
+* {
+    font-family: serif;
+}
+html {
+    background-color: #FFA500;
+}
+
+body {
+    margin-left: 0px;
+}
+
+header {
+    background-color: #494D0B;
+    color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 14px;
+    padding-right: 14px; 
+    padding-bottom: 20px;
+    padding-top: 10px;
+    border-bottom: 8px solid black;
+}
+
+header > h1.tagline {
+    margin: 0px;
+}
+
+header > span.subtitle {
+    color: #C6C6C6;
+    font-size: 13pt;
+}
+
+header::before {
+    float: right;
+    width: 100px;
+    height: 100px;
+    content: '';
+    border-radius: 50%;
+    background-image: url("george.jpg");
+}
+
+header span.author{
+    color:#51E95B;
+    font-style: normal;
+}
+
+nav > ol {
+    padding: 0px;
+    margin: 5px;
+    font-size: 11pt;
+}
+
+nav > ol > li {
+    display: inline;
+    list-style-type: none;
+    text-transform: uppercase;
+    
+}
+
+nav > ol > li > a{
+    color: yellow;
+    text-decoration: none;
+}
+
+nav > ol > li:not(:first-child)::before {
+    content: ">";
+    padding: 10px;
+}
+
+nav > ol > li > a:hover {
+    color: black;
+}
+
+article.blog:not([id]) > div.blog-header {
+    color: grey;
+}
+
+article.blog:not([id]) > div.blog-content{
+    display: none;
+}
+
+.crossref {
+    border-bottom: 2px dotted #0893FF;   
+}
+
+article.blog h2 {
+    margin: 0px;
+}
+
+article.blog span.date {
+    display: block;
+    font-family: monospace;
+    color: grey;
+}
+
+article.blog span.author {
+    display:block;
+    font-family: serif;
+    font-size: 12pt;
+    padding-bottom: 15px;
+    color: #3C3C3C;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    background-color: #494D0B;
+    color: white;
+    border-top: 4px solid black;
+    width: 100%;
+    padding: 14px 14px;
+    font-size: .8em;
+}
+
+article.blog {
+    background-color: #F5F5AA;
+    border-radius: 4px;
+    padding-left: 15px;
+    padding: 20px;
+    margin: 20px;
+}
+
+div.blog-summary {
+    background-color: white;
+    color: #3C3C3C;
+    font-style: italic;
+    font-weight:bold;
+    padding-left: 10px;
+    padding: 15px 15px;
+    font-size: 11pt;
+}
+
+div.blog-content {
+    font-size: 11pt;
+    text-indent: 1em;
+}

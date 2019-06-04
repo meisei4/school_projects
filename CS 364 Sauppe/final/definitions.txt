@@ -1,0 +1,191 @@
+schema
+-internal
+-conceptual
+-external
+
+Entity type
+
+-Attribute
+--set valued
+--composite
+-Keys
+--composite
+--Foreign key
+RelationShips
+-1to1
+-1toM
+-MtoM
+-Cardinality
+
+Entity Types
+-weak
+Derived Attributes
+
+Entity Table
+Columns - Attributes
+Rows - Tuples
+
+
+SQL -structured query lang
+Declarative lang
+-Prolog
+Imperative
+Query
+Statement
+Transactions
+
+SYNTAX...
+SELECT
+FROM
+WHERE
+LIKE
+BETWEEN
+JOIN
+ON
+AS
+NATURAL JOIN
+LEFT JOIN
+
+AGGREGATE FUNCTIONS
+sum
+avg
+count
+--operation on single attribute (column) for all tuples (rows)
+GROUP BY
+--preform the aggregate over a group of tuples (not all tuples)
+HAVING 
+--where for GROUP BYs
+DISTINCT
+LIMIT
+IS
+EXISTS 
+--SYNTAC attr EXISTS (set of vals, single)
+SELECT Title
+FROM Books AS b
+WHERE b.SalePrice > (Select SalePrice 
+                    FROM Books 
+                    WHERE Title LIKE "1984");
+
+CREATE DATABASE 
+USE
+DROP DATABASE
+
+CREATE TABLE
+
+PRIMARY KEY
+NOT NULL
+AUTO_INCREMENT
+UNIQUE
+
+Data Types
+text
+-CHAR(M)
+-VARCHAR(M) utf
+-TEXT
+numeric
+-INT
+-INTEGER
+-DECIMAL(M,N)
+-NUMERIC(M,N)
+
+real
+-DOUBLE
+null
+blob
+-BINARY LARGE OBJECT utf
+boolean
+datetime
+-DATETIME
+-DATE
+-TIMESTAMP
+-TIME
+-YEAR
+spatial
+
+UPDATE 
+SET
+INSERT
+DELETE
+UNIQUE
+
+Transactions
+commit 
+rollback
+
+ACID props
+
+Atomicity
+-all or nothing
+Consistency
+-uptodate
+Isolation
+-repeatability during concurrency
+Durability
+-commiting success
+
+
+Isolation levels
+Locking
+read lock
+write lock
+
+Expanding phase
+Shrinking phase
+
+Serializable
+
+Repeatable Reads
+-range locks
+-phantom reads
+
+Read Committed
+
+Read Uncommitted
+
+Relational Algebra
+select (WHERE)
+project (SELECT)
+union
+difference 
+cartesian product
+
+Derived Operators
+intersection(n)
+renaming ([...])
+joins with condition
+division
+
+JOINS derived from select and cartesian product
+
+
+query optimizers
+database index
+B+trees
+hash indexing
+
+logical optimization
+physical optimization
+
+push select statements
+
+pushing project statements
+
+CREATE INDEX <name> ON <table> <attribute>
+
+covering index
+non-covering index
+
+EXPLAIN
+
+normalization
+first normal form 1NF
+second normal form 2NF
+third normal form 3NF
+
+replication
+duplication  
+
+CAP theorem  
+consistency
+availability
+partition tolerance

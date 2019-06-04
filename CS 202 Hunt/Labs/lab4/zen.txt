@@ -1,0 +1,16 @@
+h1 + *
+section + section
+p:first-of-type
+abbr:nth-of-type(3)
+[class^="zen"]:nth-child(2n)
+abbr:first-child
+abbr:not([title])
+a[href^="/examples"]:first-of-type
+li:nth-of-type(3n+1)
+li > a + a 
+nav > ul > li:nth-child(2n)
+[id*="zen"]
+p:not(p:first-of-type)
+p:last-of-type
+p:last-of-type > a[href="http://www.mezzoblue.com"]
+:only-child

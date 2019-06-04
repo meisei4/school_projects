@@ -1,0 +1,21 @@
+-- 1. Which countries purchased which genres 10 or more times?
+
+
+-- 2. How many times did France purchase the Latin genre?
+-- 3. Which countries purchased the Latin genre more than France?
+-- 4. What albums did each country purchase?
+-- 5. How many times was each album purchased (regardless of country)?
+-- 6. What was the most purchased album (regardless of country)? Assume there are not two or more albums tied for most purchased.
+
+
+-- 7. What was the most purchased album (regardless of country)? Assume that there could be two or more albums tied for most purchased.
+-- 8. How many times did a country purchase each album?
+
+
+-- 9. What is the largest number of purchases of a single album made by each country? List both the country and the number of purchases, but you do not need to list the album that was most purchased.
+
+number of songs each country purchased
+
+SELECT BillingCountry, count(*)
+    FROM Invoice NATURAL JOIN InvoiceLine NATURAL JOIN Track
+    GROUP BY BillingCountry

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Order</title>
+    </head>
+    <body>
+        <header>
+            <h1>The Tee Shirt Boys</h1>
+            <img src="theboys.jpg" alt="the tee shirt boys">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="order.html">Order</a>
+        </header>
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2"></th>
+                    <th colspan="2">Shirt Length</th>
+                    <th colspan="2">Chest Width</th>
+                    <th colspan="2">Sleeve Length</th>
+                </tr>
+                <tr>
+                    <th>M</th>
+                    <th>W</th>
+                    <th>M</th>
+                    <th>W</th>
+                    <th>M</th>
+                    <th>W</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Small</th>
+                    <td>28.5"</td>
+                    <td>25.5"</td>
+                    <td>18"</td>
+                    <td>18"</td>
+                    <td>14.5"</td>
+                    <td>9.5"</td>
+                </tr>
+                <tr>
+                    <th>Medium</th>
+                    <td>29.5"</td>
+                    <td>26"</td>
+                    <td>20"</td>
+                    <td>19.5"</td>
+                    <td>16"</td>
+                    <td>10"</td>
+                </tr>
+                <tr>
+                    <th>Large</th>
+                    <td>30.5"</td>
+                    <td>27.5"</td>
+                    <td>22"</td>
+                    <td>21"</td>
+                    <td>16.5"</td>
+                    <td>11"</td>
+                </tr>
+                <tr>
+                    <th>XL</th>
+                    <td>31.5"</td>
+                    <td>27.5"</td>
+                    <td>22"</td>
+                    <td>21"</td>
+                    <td>17"</td>
+                    <td>12"</td>
+                </tr>
+                <tr>
+                    <th>XXL</th>
+                    <td>32.5"</td>
+                    <td>30"</td>
+                    <td>25"</td>
+                    <td>25"</td>
+                    <td>18"</td>
+                    <td>13"</td>
+                </tr>
+                <tr>
+                    <th>XXXL</th>
+                    <td>34"</td>
+                    <td>32"</td>
+                    <td>27"</td>
+                    <td>26.5"</td>
+                    <td>18.5"</td>
+                    <td>14"</td>
+                </tr>
+            </tbody>
+        </table>
+        <form action="http://138.49.184.110:3000/order" method="get">
+            <div>
+                First name:
+                <input type="text" name="first">
+                Last name:
+                <input type="text" name="last">
+            </div>
+            Date:
+            <input type="date" name="desired-delivery-date">
+            <fieldset>
+                <legend>Color</legend>
+                Red
+                <input type="radio" name="color" value="#FF0000">
+                Green
+                <input type="radio" name="color" value="#008000">
+                Blue
+                <input type="radio" name="color" value="#0000FF">
+                Yellow
+                <input type="radio" name="color" value="#FFFF00">
+                Orange
+                <input type="radio" name="color" value="#FFA500">
+                Orange-Swirl
+                <input type="radio" name="color" value="orange-swirl">
+                Ochre
+                <input type="radio" name="color" value="ochre">
+                Sky-Blue
+                <input type="radio" name="color" value="sky-blue">
+                Magenta
+                <input type="radio" name="color" value="magenta">
+                Pineapple
+                <input type="radio" name="color" value="pineapple">
+                Violet
+                <input type="radio" name="color" value="violet">
+                Turquoise
+                <input type="radio" name="color" value="turquoise">
+                Tye-die
+                <input type="radio" name="color" value="tye-die">   
+                Sea-foam
+                <input type="radio" name="color" value="sea-foam">            
+            </fieldset>
+            <div>
+                Text
+                <input type="text" name="text" maxlength="40"> 
+            </div>
+            <div> 
+                Comments          
+                <textarea name="comments" cols="60" rows="6" maxlength="500"></textarea>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Male</th>
+                        <th>Female</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Small</th>
+                        <td><input type="number" name="m-sm" value="0"></td>
+                        <td><input type="number" name="f-sm" value="0"></td>
+                    </tr>
+                    <tr>
+                        <th>Medium</th>
+                        <td><input type="number" name="m-med" value="0"></td>
+                        <td><input type="number" name="f-med" value="0"></td>
+                    </tr>
+                    <tr>
+                        <th>Large</th>
+                        <td><input type="number" name="m-lg" value="0"></td>
+                        <td><input type="number" name="f-lg" value="0"></td>
+                    </tr>
+                    <tr>
+                        <th>XL</th>
+                        <td><input type="number" name="m-xl" value="0"></td>
+                        <td><input type="number" name="f-xl" value="0"></td>
+                    </tr>
+                    <tr>
+                        <th>XXL</th>
+                        <td><input type="number" name="m-xxl" value="0"></td>
+                        <td><input type="number" name="f-xxl" value="0"></td>
+                    </tr>
+                    <tr>
+                        <th>XXXL</th>
+                        <td><input type="number" name="m-xxxl" value="0"></td>
+                        <td><input type="number" name="f-xxxl" value="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <fieldset>
+                <legend>Shipping</legend>
+                Ground
+                <input type="radio" name="shipping" value="ground">
+                2-Day
+                <input type="radio" name="shipping" value="2-day">
+                Overnight
+                <input type="radio" name="shipping" value="overnight">
+            </fieldset>
+            <fieldset>
+                <legend>Extras</legend>
+                Allergy-sensitive 
+                <input type="radio" name="extras" value="allergy-sensitive">
+                Domestic
+                <input type="radio" name="extras" value="heavy">
+                Heavy
+                <input type="radio" name="extras" value="domestic">
+                UV-protection
+                <input type="radio" name="extras" value="uv-protection">      
+            </fieldset>
+            <input type="submit" value="Submit">
+        </form>
+        <footer>
+            <a href="about.html">About</a>
+            <a href="order.html">Order</a>
+            <address>neville.ian@uwlax.edu</address>
+            <p property="dc:rights">&copy;
+                <span property="dc:dateCopyrighted">2017</span>
+                <span property="dc:publisher">The Tee Shirt Boys</span>
+            </p>
+        </footer>
+    </body>
+</html>
+
+

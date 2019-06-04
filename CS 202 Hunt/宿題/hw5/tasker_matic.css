@@ -1,0 +1,32 @@
+.off {
+    display: none;
+}
+
+.on {
+    display: "";
+}
+
+button {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: #DC6560;
+    font-size: 12pt;
+    border-style: none;
+
+}
+
+td > span {
+    font-weight: bold;
+    font-size: .6em;
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 7px;
+    padding: 5px;
+    margin: 10px;  
+}
+
+tr:nth-child(2n).on {
+    background-color: lightgrey;   
+}

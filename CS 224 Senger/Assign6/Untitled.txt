@@ -1,0 +1,509 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#include <time.h>
+#include <unistd.h>
+#include <signal.h>
+#include "libircclient/include/libircclient.h"
+#include <curl/curl.h>
+#include "intstk.h"
+
+char * nickname;
+char * channel;
+char * thought;
+irc_session_t * session;
+
+//find the substring t in s and return pointer to however long that string is plus the base pointer to s
+char *
+strskip(const char * s, const char * t) {
+  const char * p;
+  if ((p = strstr(s, t))) {
+    return (char *) p + strlen(t);
+  }
+  return NULL;
+}
+
+void
+exitIfError(int condition, const char * msg, const char * err)
+{
+  if (condition) {
+    fprintf(stderr,"%s : %s\n", msg, err);
+    exit(1);
+  }
+  return;
+}
+
+void
+log_event(irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count) {
+
+  char buf[512] = "";
+
+  for (int cnt = 0; cnt < count; cnt++ ) {
+    if (cnt) strcat (buf, "|");
+    strcat (buf, params[cnt]);
+  }
+
+  fprintf(stderr,"Event \"%s\", origin: \"%s\", params: %d [%s]\n", event, origin, count, buf);
+}
+
+void
+event_connect(irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count) {
+  log_event(session,event,origin,params,count);
+  // get the context data
+  irc_cmd_join(session,channel,0);
+}
+
+void
+event_join(irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count) {
+  log_event(session, event, origin, params, count);
+  irc_cmd_user_mode(session, "+i");
+  irc_cmd_msg(session, params[0], "Hi all");
+}
+////////////////////////////////////////////////^^^^^^^^^SENGERS^^^^^^^^////////////////////////////////
+void
+ALARMhandler(int sig){
+    signal(SIGALRM, SIG_IGN);
+    irc_cmd_msg(NULL, channel, "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu\n");
+    signal(SIGALRM, ALARMhandler);
+}
+
+void
+remember(char * tht){
+  thought = tht;
+}
+
+int *
+factorsOf(int x){
+  int i;
+  int * facts = malloc(2 * sizeof(int));
+  int count = 0;
+  for(i = 0; i < x; i++){
+    if (x % i == 0){
+      facts[count++] = i;
+    }
+    if(count * sizeof(int) >= sizeof(facts)){
+      facts = realloc(facts, 2 * sizeof(int));
+    }
+  }
+  return facts;
+}
+
+int cmpfunc (const void * a, const void * b){
+  return ( * (int * ) a - * ( int * ) b );
+}
+
+bool
+isFactor(int x, int y){
+  return (x % y) == 0 ? 1 : 0;
+}
+///////////////////////////////////////////////////////////////////EXPRESSEVAL////////////////////////////
+struct expreval{
+  char * expr;
+};
+
+int
+priority(int op) {
+  switch (op) {
+    case '+': return 1;
+    case '-': return 1;
+    case '*': return 2;
+    case '/': return 2;
+    case '%': return 2;
+    default: return 0;
+  }
+}
+
+void
+doOp(struct intStack * stk, int op) {
+  if (stkEmpty(stk)) { irc_cmd_msg(session, channel, "syntax error\n"); return;}
+  int v2 = stkPop(stk);
+  if (stkEmpty(stk)) { irc_cmd_msg(session, channel, "syntax error\n"); return;}
+  int v1 = stkPop(stk);
+  switch (op) {
+    case '+':
+      stkPush(stk,v1+v2);
+      break;
+    case '-':
+      stkPush(stk,v1-v2);
+      break;
+    case '*':
+      stkPush(stk,v1*v2);
+      break;
+    case '/':
+      stkPush(stk,v1/v2);
+      break;
+    case '%':
+      stkPush(stk,v1 % v2);
+  }
+}
+////////////////////////////////////////////EXPRESSEVAL////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void
+event_channel(irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count) {
+  log_event(session, event, origin, params, count);
+
+  const char * cmd = params[1];
+  char * p;
+  //what is p
+  //what is b-origin
+  //what is b
+  thought = "";
+  int * facts;
+  int * bingoSheet;
+  bool in = 0;
+  char * b = strchr(origin,'!');
+  char sender[16];
+  strncpy(sender,origin,b-origin);
+  sender[b-origin] = '\0';
+  char msg[64];
+  char str[64];
+  printf("sender %s\n", sender);
+  if ((p = strskip(cmd, nickname)) && strskip(p, "say hello")) {
+    sprintf(msg, "hello %s", sender);
+    irc_cmd_msg(session, params[0], msg);
+    return;
+  }
+  //=========================================================================TIME==========================
+  if ((p = strskip(cmd, nickname)) && strskip(p, "time")) {
+    time_t clock = time(NULL);
+    sprintf(msg, "clock %ld\n", clock);
+    irc_cmd_msg(session, params[0], msg);
+    struct tm * tm = localtime(&clock);
+    sprintf(msg, "tm sec: %d min: %d hour: %d\n",tm->tm_sec,tm->tm_min,tm->tm_hour);
+    irc_cmd_msg(session, params[0], msg);
+    char * format = ("%d/%m/%Y @ %H:%M:%S");
+    char buf[32];
+    strftime(buf,32,format,tm);
+    sprintf(msg, "time %s\n",buf);
+    irc_cmd_msg(session, params[0], msg);
+    return;
+  }
+  //=========================================================================ALARM=========================
+  if ((p = strskip(cmd, nickname)) && strskip(p, "alarm")) {
+    int len = strlen(" alarm ");
+    char * time = malloc(strlen(p) - len);
+    signal(SIGALRM, ALARMhandler);
+    for(int i = 0; i < strlen(p) - len; i++){
+      time[i] = p[len + i];
+    }
+    int tim = atoi(time);
+    alarm(tim);
+    return;
+  }
+
+  //=========================================================================REMEMBER======================
+  if ((p = strskip(cmd, nickname)) && strskip(p, "remember")) {
+    int len = strlen(" remember ");
+    char * temp = malloc(strlen(p) - len);
+    for(int i = 0; i < strlen(p) - len; i++){
+      temp[i] = p[len + i];
+    }
+    remember(temp);
+    sprintf(msg, "SAVED %s", temp);
+    irc_cmd_msg(session, params[0], msg);
+    return;
+  }
+  //=========================================================================REMIND========================
+  if ((p = strskip(cmd, nickname)) && strskip(p, "remind")) {
+    if(strcmp(thought, "")){
+      sprintf(str, "I have nothing for you sorry, try using \"%s remember <something>\"", nickname);
+      irc_cmd_msg(session, params[0], str);
+    }else{
+      sprintf(str, "it was: %s ", thought);
+      irc_cmd_msg(session, params[0], str);
+    }
+    return;
+  }
+  //===========================================================================FORGET======================
+  if ((p = strskip(cmd, nickname)) && strskip(p, "forget")) {
+    irc_cmd_msg(session, params[0], "like it never even happened");
+    thought = "";
+    return;
+  }
+  //===========================================================================EXPRESSION_EVALUATION=======
+  if ((p = strskip(cmd, nickname)) && strskip(p, "solve this: ")) {
+    int solution;
+    int len = strlen(" solve this: ");
+    char * temp = malloc(strlen(p) - len);
+    for(int i = 0; i < strlen(p) - len; i++){
+      temp[i] = p[len + i];
+    }
+    struct intStack * evalstk = stkCreate(5);
+    struct intStack * opstk = stkCreate(5);
+
+    int inDigits = 0;
+
+    int c;
+    int i = 0;
+    while ((c = temp[i++]) !=  '\0') {
+      switch (c) {
+        case '0': case '1': case '2': case '3': case '4':
+        case '5': case '6': case '7': case '8': case '9': {
+          if (!inDigits) {
+            stkPush(evalstk,0);
+          }
+          int v = stkPop(evalstk);
+          v = 10 * v + (c - '0');
+          stkPush(evalstk,v);
+          inDigits = 1;
+        } break;
+        case '+': case '-': case '*': case '/': case '%':
+          inDigits = 0;
+          while (!stkEmpty(opstk) && priority(stkTop(opstk)) >= priority(c)) {
+            doOp(evalstk,stkPop(opstk));
+          }
+          stkPush(opstk,c);
+          break;
+        case '(':
+          stkPush(opstk,c);
+          inDigits = 0;
+          break;
+        case ')':
+          while (!stkEmpty(opstk) && stkTop(opstk) != '(') {
+            doOp(evalstk,stkPop(opstk));
+          }
+          stkPop(opstk);
+          inDigits = 0;
+          break;
+        case '=':
+          while (!stkEmpty(opstk)) {
+            doOp(evalstk,stkPop(opstk));
+          }
+          if (stkEmpty(evalstk)) {
+            irc_cmd_msg(session, params[0], "invalid expression");
+          }
+          else {
+
+            sprintf(str, "solution: %d", stkPop(evalstk));
+            irc_cmd_msg(session, params[0], str);
+          }
+          inDigits = 0;
+          break;
+        case '\n':
+          stkReset(evalstk);
+          stkReset(opstk);
+          break;
+        default:
+          break;
+      }
+    }
+    return;
+  }
+  //============================================================================cURL_WITH_MASHAPE==========
+  if ((p = strskip(cmd, nickname)) && strskip(p, "quote")) {
+    //
+    return;
+  }
+  if ((p = strskip(cmd, nickname)) && strskip(p, "weather")) {
+    //execve();
+    return;
+  }
+  //=============================================================================BINGO_BOT=================
+  if(strstr(cmd, "Starting new game")){
+    sprintf(msg, "BingoBot I'm in!");
+    in = 1;
+    return;
+  }
+
+  if ((p = strskip(cmd, nickname)) && strskip(p, "your number is ")) {
+    int len = strlen(" your number is ");
+    char * temp = malloc(strlen(p) - len);
+    for(int i = 0; i < strlen(p) - len; i++){
+      temp[i] = p[len + i];
+    }
+    remember(temp);
+    int num = atoi(temp);
+    facts = factorsOf(num);
+    bingoSheet = malloc(sizeof(facts));
+    return;
+  }
+
+  if(in && strstr(cmd, "call ")){
+    int len = strlen(cmd);
+    char * temp = malloc(strlen(p) - len);
+    for(int i = 0; i < strlen(cmd) - len; i++){
+      temp[i] = cmd[len + i];
+    }
+
+    if(isFactor(atoi(temp), atoi(thought))){
+      bingoSheet[count++] = atoi(temp);
+      if(count * sizeof(int) == sizeof(facts)){
+        qsort(bingoSheet, count, sizeof(int), cmpfunc);
+        if(memcmp(bingoSheet, facts, count) == 0){
+          irc_cmd_msg(session, params[0], "Bingo!");
+        }
+      }
+    }
+    return;
+  }
+  //===============================================================================TIC-TAC-TOE================
+  if((p = strskip(cmd, nickname)) && strstr(p, "tictactoe")){
+    int i = 0;                                   /* Loop counter                         */
+    int player = 0;                              /* Player number - 1 or 2               */
+    int go = 0;                                  /* Square selection number for turn     */
+    int row = 0;                                 /* Row index for a square               */
+    int column = 0;                              /* Column index for a square            */
+    int line = 0;                                /* Row or column index in checking loop */
+    int winner = 0;                              /* The winning player                   */
+    char board[3][3] = {                         /* The board                            */
+      {'1','2','3'},          /* Initial values are reference numbers */
+      {'4','5','6'},          /* used to select a vacant square for   */
+      {'7','8','9'}           /* a turn.                              */
+    };
+
+    /* The main game loop. The game continues for up to 9 turns */
+    /* As long as there is no winner                            */
+    for( i = 0; i<9 && winner==0; i++)
+    {
+      /* Display the board */
+      irc_cmd_msg(session, params[0], "\n\n");
+      sprintf(str, " %c | %c | %c\n", board[0][0], board[0][1], board[0][2]);
+      irc_cmd_msg(session,params[0], str);
+      irc_cmd_msg(session, params[0], "---+---+---\n");
+      sprintf(str, " %c | %c | %c\n", board[1][0], board[1][1], board[1][2]);
+      irc_cmd_msg(session, params[0], str);
+      irc_cmd_msg(session, params[0], "---+---+---\n");
+      sprintf(str, " %c | %c | %c\n", board[2][0], board[2][1], board[2][2]);
+      irc_cmd_msg(session, params[0], str);
+
+      player = i%2 + 1;                           /* Select player */
+
+      /* Get valid player square selection */
+      do
+      {
+        sprintf(str, "\nPlayer %d, please enter the number of the square "
+                "where you want to place your %c: ", player, (player==1)?'X':'O');
+        irc_cmd_msg(session, params[0], str);
+        scanf("%d", &go);
+        ///howwwwwww to get this is a way the works///////////////////////////////////////////////
+
+        row = --go/3;                                 /* Get row index of square      */
+        column = go%3;                                /* Get column index of square   */
+      }while(go<0 || go>9 || board[row][column]>'9');
+
+      board[row][column] = (player == 1) ? 'X' : 'O';        /* Insert player symbol   */
+
+      /* Check for a winning line - diagonals first */
+      if((board[0][0] == board[1][1] && board[0][0] == board[2][2]) ||
+         (board[0][2] == board[1][1] && board[0][2] == board[2][0]))
+        winner = player;
+      else
+      /* Check rows and columns for a winning line */
+        for(line = 0; line <= 2; line ++)
+          if((board[line][0] == board[line][1] && board[line][0] == board[line][2])||
+             (board[0][line] == board[1][line] && board[0][line] == board[2][line]))
+            winner = player;
+
+
+    }
+    /* Game is over so display the final board */
+    irc_cmd_msg(session, params[0], "\n\n");
+    sprintf(str, " %c | %c | %c\n", board[0][0], board[0][1], board[0][2]);
+    irc_cmd_msg(session,params[0], str);
+    irc_cmd_msg(session, params[0], "---+---+---\n");
+    sprintf(str, " %c | %c | %c\n", board[1][0], board[1][1], board[1][2]);
+    irc_cmd_msg(session, params[0], str);
+    irc_cmd_msg(session, params[0], "---+---+---\n");
+    sprintf(str, " %c | %c | %c\n", board[2][0], board[2][1], board[2][2]);
+    irc_cmd_msg(session, params[0], str);
+    /* Display result message */
+    if(winner == 0)
+      irc_cmd_msg(session, params[0], "\nHow boring, it is a draw\n");
+    else
+      sprintf(str, "\nCongratulations, player %d, YOU ARE THE WINNER!\n", winner);
+      irc_cmd_msg(session, params[0], str);
+
+    return;
+  }
+  //================================================================================SNAKE=====================
+  // default response
+
+  if((p = strskip(cmd, nickname)) && strskip(p, "help")){
+    sprintf(str, "%s tictactoe \n Play Tictactoe with another user\n", nickname);
+    irc_cmd_msg(session, params[0], str);
+    sprintf(str, "%s time \n get the time and date \n", nickname);
+    irc_cmd_msg(session, params[0], str);
+    sprintf(str, "%s alarm [insert number of seconds until alarm here] \n set an alarm for however many seconds (e.g. BotName alarm 30)\n", nickname);
+    irc_cmd_msg(session, params[0], str);
+    sprintf(str, "%s remember [insert thought here(char string)] \n have the bot remember a character string\n", nickname);
+    irc_cmd_msg(session, params[0], str);
+    sprintf(str, "%s remind \n print out what ever is in the thought location(remember is expected to be called before this\n", nickname);
+    irc_cmd_msg(session, params[0], str);
+    sprintf(str, "%s forget \n set the thought location to be empty", nickname);
+    irc_cmd_msg(session, params[0], str);
+    sprintf(str, "%s solve this: [insert expression here (dont make it too complicated please, this isn't wolfram)] \n solves the expression (usually...) (e.g. BotName solve this: (5 + 7)/4 - 2\n", nickname);
+    irc_cmd_msg(session, params[0], str);
+    sprintf(str, "%s quote \n this will use Dr. Senger's curlquote program to generate a random quote\n", nickname);
+    irc_cmd_msg(session, params[0], str);
+    sprintf(str, "%s weather \n display the weather somehow", nickname);
+    irc_cmd_msg(session, params[0], str);
+    sprintf(str, "BingoBot I'm in! \n Play bingo with the BingoBot");
+    irc_cmd_msg(session, params[0], str);
+    return;
+  }
+  if (strstr(cmd, nickname)) {
+    irc_cmd_msg(session, params[0], "You called!");
+  }
+}
+
+
+int
+main(int argc, char * argv[]) {
+
+  if (argc != 4) {
+    fprintf(stderr, "usage: %s server nick channel\n", argv[0]);
+    return 1;
+  }
+  //start making bot
+  irc_callbacks_t callbacks;
+  memset(&callbacks, 0, sizeof(callbacks));
+  callbacks.event_connect = event_connect;
+  callbacks.event_join = event_join;
+  callbacks.event_channel = event_channel;
+
+  irc_session_t * s = irc_create_session(&callbacks);
+  session = s;
+  exitIfError(!s, "failed to create session", NULL);
+
+  nickname = strdup(argv[2]);
+  channel = strdup(argv[3]);
+
+  bool ret = irc_connect(s,argv[1],6667,0,nickname,0,0);
+  exitIfError(ret,"connect failed",irc_strerror(irc_errno(s)));
+
+  ret = irc_run(s);
+  exitIfError(ret,"run failed",irc_strerror(irc_errno(s)));
+
+  return 0;
+}

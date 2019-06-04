@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <title>Survey</title>
+  </head>
+  
+  <body>
+    <section>
+	   <h1>Medical Survey</h1>
+	   <p>
+		   This survey collects information that is only used internally
+       to improve products and services that better meet the needs of
+       our clients. The information entered on this survey is not
+       provided to third parties without the written consent of the
+       individual completing the survey.
+	   </p>
+     
+	   <form action="http://138.49.184.110:3000/meds" method="GET">
+		   <fieldset>
+		     <legend>Personal</legend>
+		     <table>
+			     <tbody>
+				     <tr>
+				       <td><label for="fnInput">First Name</label></td>
+				       <td><input name="fn" id="fnInput" type="text"></td>
+				       <td>Gender</td>
+				       <td>
+					       <label for="femaleInput">Female</label>
+					       <input name="sex" id="femaleInput" value="F" type="radio">
+					       <label for="maleInput">Male</label>
+					       <input name="sex" id="maleInput" value="M" type="radio">
+				       </td>
+				     </tr>
+             
+				     <tr>
+				       <td><label for="lnInput">Last Name</label></td>
+				       <td><input name="ln" id="lnInput" type="text"></td>
+				       <td>Citizenship</td>
+				       <td>
+					       <select name="citizen">
+						       <option value="US" selected="selected">US</option>
+						       <option value="CANADA">Canada</option>
+						       <option value="MEXICO">Mexico</option>
+					       </select>
+				       </td>
+				     </tr>
+             
+				     <tr>
+				       <td>Address</td>
+				       <td colspan="3">
+					       <textarea name="addr" rows="5" cols="60"></textarea>
+				       </td>
+				     </tr>
+			     </tbody><tbody>
+		     </tbody></table>
+		   </fieldset>
+       
+		   <fieldset>
+		     <legend>Medical History</legend>
+		     <input value="sp" name="med" id="sp" type="checkbox">
+		     <label for="sp">Small Pox</label>
+		     <input value="mumps" name="med" id="mumps" type="checkbox">
+		     <label for="mumps">Mumps</label>
+		     <input value="rsv" name="med" id="rsv" type="checkbox">
+		     <label for="rsv">RSV</label>
+		     <input value="dia" name="med" id="dia" type="checkbox">
+		     <label for="dia">Diabetes</label>
+		   </fieldset>
+		   <input value="Submit" type="submit">
+	   </form>
+    </section>
+    
+
+	  <footer>
+	    <hr>
+      © CS 202
+    </footer>
+  
+
+</body></html>

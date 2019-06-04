@@ -1,0 +1,19 @@
+decl x, y : int;
+decl main() : int;
+
+impl main() {
+    y = 3;
+    put("count down till == 3 for loop from 6");
+    put('\n');
+    for (x = 6; x > y; x--;){
+        put(x); 
+        put('\n');   
+    };
+    put("count up till == 3 for loop from 0");
+    put('\n'); 
+    for (x = 0; x < y; x++;){
+        put(x); 
+        put('\n');   
+    };
+};
+

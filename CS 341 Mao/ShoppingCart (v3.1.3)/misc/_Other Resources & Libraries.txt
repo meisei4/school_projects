@@ -1,0 +1,44 @@
+
+======================================================================
+PAGE - Python Automatic GUI Generator
+http://page.sourceforge.net/
+
+
+======================================================================
+PyCharm: Installing Packages
+https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html
+
+LIBRARY: PIL - Pillow Imaging Library
+https://stackoverflow.com/questions/47357090/tkinter-error-couldnt-recognize-data-in-image-file?rq=1
+
+LIBRARY: cryptography
+https://pypi.org/project/cryptography/#description
+
+LIBRARY: taxjar
+https://pypi.org/project/taxjar/
+
+
+======================================================================
+How to get Spinbox to Reveal whether up or down button has been pushed.
+https://stackoverflow.com/questions/36877375/tkinter-how-to-get-spinbox-to-reveal-whether-up-or-down-button-has-been-pushed
+
+Validating Credit Card Numbers
+https://codereview.stackexchange.com/questions/169530/validating-credit-card-numbers
+
+Encrypting passwords for use with Python and SQL SServer
+https://www.mssqltips.com/sqlservertip/5173/encrypting-passwords-for-use-with-python-and-sql-server/
+
+Deep Dive on End-to-End Encryption: How Do Public Key Encryption Systems Work?
+https://ssd.eff.org/en/module/deep-dive-end-end-encryption-how-do-public-key-encryption-systems-work
+
+Tkinter: Scrolling A Group Of Widgets
+https://riptutorial.com/tkinter/example/30942/scrolling-a-group-of-widgets
+
+Stack Overflow: How to clear Tkinter Canvas?
+https://stackoverflow.com/questions/15839491/how-to-clear-tkinter-canvas
+
+Stack Overflow: How to encrypt text with a password in python?
+https://stackoverflow.com/questions/42568262/how-to-encrypt-text-with-a-password-in-python/44212550?fbclid=IwAR0k2tsntmmGX1Cx72hLUnD8ZGgNfICCOCe3Z1ozFYPaXToBJFv8LkbxeRA
+
+
+======================================================================

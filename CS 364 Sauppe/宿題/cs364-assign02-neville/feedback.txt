@@ -1,0 +1,13 @@
+Total: (12.5 / 16)
+(1 / 1) query21
+(1 / 2) query22
+-.5: your query finds titles that contain “The”, rather than have “The” at the beginning
+-.5: should be looking at Album, not Track
+(2 / 2) query23
+(2 / 3) query24
+-.5: regular inner join would suffice here
+-.5: need to join on primary/foreign key relationship as well
+(2 / 3) query25
+-1: need to find those tracks that have a NULL value for the InvoiceLine attributes
+(4.5 / 5) query26
+-.5: should also list Title attribute in output

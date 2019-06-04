@@ -1,0 +1,8 @@
+This is the beginning of a list
+-1 item one
+-2 item two
+--2.1 sub item
+--2.2 sub item
+-3 item three
+A normal -- line -- with no tabs.
+The end of the file.

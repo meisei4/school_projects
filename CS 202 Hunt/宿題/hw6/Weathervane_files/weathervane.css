@@ -1,0 +1,126 @@
+body {
+    margin: 0px;
+    background-image: url("./black-felt.png");
+}
+
+.footer {
+    display:inline-block;
+    position: fixed;
+    color: #C4C1B6;
+    bottom: 0;
+    background-color: #FFF5D4;
+    height: 35px;
+    width: 100vw;
+    font-size:0.9em;
+    padding-top:14px;
+    padding-left: 10px;
+}
+
+.header {
+    background-color: #FFF5D4;
+    height: 45px;
+    font-size:20pt;
+    padding-top: 15px; 
+}
+
+img {
+    z-index:1;
+}
+
+#topbar {
+    background-color: #765444;
+    height: 45px;
+    padding-bottom: 5px;
+}
+
+#addButton {
+    border-radius: 5px;
+    width: 100px;
+    
+}
+
+input {
+    width: 23%;
+    margin-top: 10px;
+    border-radius: 3px;
+    border-width: 1px;
+    padding-top: 4px;
+    padding-left: 3px;
+}
+
+.profile {
+    font-size: 13pt;
+    color:#808080;
+    float: right;
+    padding-right: 15px;
+    padding-top: 6px;
+}
+
+#container{
+    padding-bottom:80px;
+}
+
+
+div.forecast {
+    display: inline-block;
+    width: 200px;
+    padding: 10px;
+    padding-top:0px;
+    padding-bottom:0px;
+    background-color:  #FFF5D4;
+    margin: 20px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    box-shadow: 5px 5px 4px gray;
+}
+
+.head1 {
+    position: relative;
+    top: -15px;
+    margin: 0px;
+    padding-bottom: 15px;
+}
+
+span:after {
+    content:"\a";
+    white-space: pre;
+}
+
+.whitepart {
+    padding: 17px;
+    padding-top: 0px;
+    padding-bottom:1px;
+    position:relative;
+    top: -25px;
+    background-color:white;
+}
+
+.head2 {
+    position: relative;
+    font-size: 1.2em;
+    top: 5px;
+    padding-top:0px;
+    margin: 0px;
+}
+
+.wimg {
+    width: 70px;
+    height: 70px;
+}
+
+.info {
+    margin: 0px;
+    margin-top: 10px;
+}
+
+.deleter{
+    position: relative;
+    top: -10px;
+    left: -20px;
+    width: 26px;
+    height: 26px;
+    border: none;
+    border-radius: 13px;
+    background-color: #7C0102;
+    box-shadow: 3px 2px 2px black;
+}

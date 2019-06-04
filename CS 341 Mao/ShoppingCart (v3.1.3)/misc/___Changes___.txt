@@ -1,0 +1,150 @@
+- Mini Notes:
+    - [DONE] Need function: Admin can add items.
+    - [DONE] Need function: Admin can delete items.
+    - [DONE] Simple Debit/Credit card system.
+    - [DONE] Rework CHECKOUT.
+    - [DONE] Work on Taxing system.
+    - [DONE] Allow multiple promotions for different items.
+    - [DONE] Allow user to see their Order History.
+    - [DONE] Encrypt all passwords.
+    - [DONE] Work on Encryption/Decryption functions.
+    - Create a User Manual for Step 10 of the Demo.
+    
+    - ***Optional: Use a Public/Private Key Encryption System instead.
+
+=================================================================================================
+3.1.3
+- Fixed problems involving bugs when Removing Products.
+- Database: Added "Active" column to table "Products" (Hidden products for future use.)
+- Out of Stock message will appear when adding items that have 0 Quantity Left.
+
+
+3.1.2
+- Fixed OrderHistory. It should now display prices correctly.
+- Fixed a problem with storing Dates incorrectly in the database. It will now be correctly stored.
+
+
+3.1.1
+- Fixed bugs causing spinboxes to break/crash the program.
+
+
+3.1.0
+- Added validation checks that are performed when adding promotions and products.
+- Commented out 1 button "RemoveOne" from "ItemBox.py"
+- SpinBox all function now.
+
+3.0.9
+- Commented out the Tkinter Label, "Advanced Search"
+- Checks for a valid Debit/Credit card added in "CartPage.py".
+
+- Added 2 methods to "CartPage.py":
+    is_valid_card_number()
+    get_card_brand()
+    
+- These card formats below are valid.
+- You can make up your own numbers. They just have to match the format below.
+    *Card Number*         | Expire Date | CVV | Brand
+    4721-4721-4721-4721     12/21         555   Visa (Their cards start with 4)
+    5721-5721-5721-5721     12/21         555   MasterCard (Their cards start with 5)
+    6721-6721-6721-6721     12/21         555   Discover (Their cards start with 6)
+    6721672167216721        12/21         555   Discover (Works with no hyphens. Their cards start with 6)
+
+- New class added to "AccountPage.py"
+    class Product
+        - This class will allow admins to add/replace/remove products.
+        
+- Promotions reworked. Admins can now add/replace/remove promotions.
+- Admins can now add/replace/remove products.
+
+-------------------------------------------------------------------------------------------------
+3.0.8
+- Database: Added "TotalAfterTax" column to table "Purchases" (Allows Order History to display more accurately)
+
+-------------------------------------------------------------------------------------------------
+3.0.7
+- Updated majority of python documentation.
+- Reworked Checkout GUI ("CartPage.py").
+- Debit/Credit cards will be stored after a Successful Checkout.
+- Moved class "CartItemBox.py" into "CartPage.py". ("CartItemBox.py" is removed.)
+
+- Added methods to "CartPage.py".
+    def clear_widget
+    def reset_defaults
+    def validate_entries
+    def get_tax_rate
+    
+- Reworked methods in "LoginRegisterPage.py"
+    def clear_widget
+    def reset_defaults
+    def validate_entries
+    
+- Moved calculations for tax to:
+    Line #: 754, 814, 875
+    Methods: "def get_tax_rate"
+
+-------------------------------------------------------------------------------------------------
+3.0.6
+- Symmetric Encryption (Single Key Encryption) for Registration/Login implemented.
+- All passwords are now encrypted.
+
+-------------------------------------------------------------------------------------------------
+3.0.5
+- Admins and Users can view their Order History. Guests cannot access the Order History page. 
+- (Access the "Order History" by logging in and clicking the "Account" button on the top right.)
+- Added "setup" method to "ShoppingCart.py". (It removes applied promotions inside the database for current users from their current CID/Cart.)
+
+-------------------------------------------------------------------------------------------------
+3.0.4
+- Fixed Bug: Prices and Promotions are now displayed correctly.
+- Minor change: You can press enter/return once you finish typing the promotion code at checkout.
+
+-------------------------------------------------------------------------------------------------
+3.0.3
+- Combined "AccountPageAdmin.py" with "AccountPage.py" into one single page. New name: "AccountPage.py".
+- Any logged in member can now see the proper Account Page.
+- Implemented a function in the account page, hiding admin settings (Add/Delete/Edit stuff) from users.
+- Removed excessive print statements.
+
+-------------------------------------------------------------------------------------------------
+3.0.2
+- Reworked "AccountPageAdmin.py". When logging in as an admin and clicking on the Account page, a new GUI will appear.
+- Added Order History page, which is attached to "AccountPageAdmin.py"
+- Order History page is not implemented yet.
+- Database: Added "CID" column to table "Purchases" (Allow Order History page to find what items they purchased)
+- Database: Added "Total" column to table "Purchases" (Allow Order History page to display the total amount to the user.)
+- Changed how ShoppingCart.py checks if someone is logged in or not, by checking roles. (roles: admin, guest, user)
+
+-------------------------------------------------------------------------------------------------
+3.0.1
+- Database: Added "PID" column to table "Promotions"
+- Multiple Promotions are supported.
+- Removed CustomerCartHandler class. (Class is not used)
+- Removed PromotionHandler class. (Class is not used)
+
+-------------------------------------------------------------------------------------------------
+3.0.0
+- Fixed bug: Checkout question works properly now.
+- "CartPage.py" class's method, "apply_promo", has been updated to check the for a valid time/date.
+- Added a PromotionHandler class. (Might be specifically designed to handle Promotions.)
+- Added a CustomerCartHandler class. (Might be specifically designed to handle Orders/ShoppingCart.)
+
+-------------------------------------------------------------------------------------------------
+2.1.1
+- Added promotions (Works for one item currently and is not saved on exit).
+
+-------------------------------------------------------------------------------------------------
+2.1.0
+- Added 'CartPage.py'
+- Added 'CartItemBox.py'
+- Added functionallity to the buttons "Add To Cart".
+
+-------------------------------------------------------------------------------------------------
+2.0.0
+- Added 'Header.py'
+- Added 'LogoutPage.py'
+- Changed Window resolution to 1024x768.
+- Reorganized most of the code.
+- Implemented a simple search feature.
+- Added PIL or Pillow into "ItemBox.py" to help apply SQLite3 BLOB images to each box.
+- On the HomePage, the boxes that will show a product image are now 128x128. (Still need to resize or crop.)
+- Added more documentation.

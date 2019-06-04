@@ -1,0 +1,13 @@
+ 	
+Individual Feedback:
+Edward Neville
+Total: (30.5 / 35)
+(3 / 3) query31
+(6 / 6) query32
+(6 / 7) query33
+-1: did not divide by 1000
+(8 / 8) query34
+(5.5 / 6) query35
+-0.5: did not rename column in output
+(2 / 5) query36
+-3: this is the query we wrote in class on what was the most purchased album in each country; you needed to find how many times each country purchased each album

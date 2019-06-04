@@ -1,0 +1,17 @@
+sleep 8 & sleep 5 & jobs
+ls ; pwd
+date
+date
+date
+sleep 5 & fg
+jobs
+jobs
+history
+sleep 1 ; sleep 2 ; sleep 5 & fg
+history 
+jobs
+sleep 20 &
+exit
+ls 
+ls
+whoami

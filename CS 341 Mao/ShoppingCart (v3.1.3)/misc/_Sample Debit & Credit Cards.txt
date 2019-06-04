@@ -1,0 +1,13 @@
+
+
+Visa's cards start with 4.
+MasterCards start with 5.
+Discover's cards start with 6.
+
+***Hyphens are optional.***
+
+*Card Number*         | Expire Date | CVV | Brand
+4721-4721-4721-4721     12/21         555   Visa (Their cards start with 4)
+5721-5721-5721-5721     12/21         555   MasterCard (Their cards start with 5)
+6721-6721-6721-6721     12/21         555   Discover (Their cards start with 6)
+6721672167216721        12/21         555   Discover (Works with no hyphens. Their cards start with 6)

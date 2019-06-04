@@ -1,0 +1,25 @@
+
+{"faculty":[
+	{"firstName":"John", 	"lastName":"Doe", 	"classes": ["cs120-1", "cs340"]},
+	{"firstName":"Anna", 	"lastName":"Smith", 	"classes": ["cs220-1", "cs445"]},
+	{"firstName":"Peter", 	"lastName":"Jones", 	"classes": ["cs120-2", "cs340", "cs478"]}
+	{"firstName":"Johnny", 	"lastName":"Wong", 	"classes": ["cs341",   "cs440"]}
+	{"firstName":"Evelyn", 	"lastName":"Castillo", 	"classes": ["cs220-2", "cs431"]}
+	{"firstName":"Luis", 	"lastName":"Stephens", 	"classes": ["cs447",   "cs270"]}
+	{"firstName":"Agnes", 	"lastName":"Summers", 	"classes": ["cs432",   "cs234"]}
+],
+  "courses": {	"cs120-1": {"location": "Cent2213", "time": "8:50 MWF"},
+		"cs120-2": {"location": "Wing231",  "time": "9:45 TTH"},
+		"cs220-1": {"location": "Cent2215", "time": "8:50 MWF"},
+		"cs220-2": {"location": "Wing231",  "time": "9:55 MWF"},
+		"cs234":   {"location": "Cent2213", "time": "8:50 MWF"},
+		"cs270":   {"location": "Cent2215", "time": "1:10 MWF"},
+		"cs340":   {"location": "Cent2213", "time": "2:15 MWF"},
+		"cs341":   {"location": "Wing231",  "time": "11:00 TTH"},
+		"cs432":   {"location": "Cent2215", "time": "3:20 MWF"},
+		"cs440":   {"location": "Wing231",  "time": "2:00 TTH"},
+		"cs445":   {"location": "Cent2213", "time": "7:45 MWF"},
+		"cs447":   {"location": "Cent2215", "time": "12:05 MWF"}
+	     }
+}
+
