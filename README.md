@@ -1,5 +1,9 @@
 # school
+
+Folder naming: <CourseID> <Professor Name>
+
 Collection of some school projects, rather disorganized.
+
 CS 202 - Introduction to Web Design
 
 CS 224 - Introduction to Programming Language (C)
@@ -21,3 +25,5 @@ CS 431 - Introduction to Robotics
 CS 441 - Operating System Concepts
 
 CS 442 - Structures of Compilers
+
+MTH 480 - Industrial Mathematics
