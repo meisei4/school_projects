@@ -1,6 +1,6 @@
 # school
 
-Folder naming: <CourseID> <Professor Name>
+Folder naming: [CourseID] [Professor Name]  
 
 Collection of some school projects, rather disorganized.
 
