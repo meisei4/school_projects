@@ -1,5 +1,6 @@
 compile everything in hw2 package
-run "java hw2/ui/FieldDemo /path/to/fieldfile"
+linux: "find . -name "*.java" -print | xargs javac" 
+then run "java hw2/ui/FieldDemo /path/to/fieldfile"
 
 field description file format grammar:
 //<FILE> → { <PFIELD> <EOL> } 
