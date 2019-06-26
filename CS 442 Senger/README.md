@@ -11,8 +11,9 @@ One must change Makefile accordingly, (arch linux: "qtspim" and "LOADLIBES = -lf
 
 
 COMPREHENSIVE TEST:
-```yacc -d YGrammar.y  
-make ytest```
-
+```
+yacc -d YGrammar.y  
+make ytest
+```
 
 Project/Semantics2: Part two of the compiler project
